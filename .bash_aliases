@@ -1,0 +1,6 @@
+alias bashrc="vim ~/.bashrc"
+alias bashalias="vim ~/.bash_aliases"
+alias bashscript="vim ~/.bash_scripts"
+alias refresh="source ~/.bashrc"
+alias lzd="lazydocker"
+alias lzg="lazygit"

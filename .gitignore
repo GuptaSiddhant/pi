@@ -1,0 +1,8 @@
+*
+!.gitignore
+!.gitconfig
+!.bashrc
+!.tmux.conf
+!.bash_*
+.bash_history
+!.apt_packages
