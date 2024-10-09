@@ -2,3 +2,6 @@
 	defaultBranch = main
 [alias]
 	aa = add --all
+[user]
+	name = Siddhant Gupta
+	email = guptasiddhant@icloud.com

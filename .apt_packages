@@ -26,4 +26,8 @@ if [[ $(command -v node) ]]; then echo "nvm"; else
    nvm install latest
 fi
 
+if [[ $(command -v deno) ]]; then echo "deno"; else
+    curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
+fi
+
 sudo apt -y autoremove && sudo apt -y clean
