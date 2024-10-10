@@ -47,3 +47,13 @@ if [[ $(command -v deno) ]]; then echo "deno"; else
     	curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
 fi
 
+# lazygit
+if [[ $(command -v lazygit) ]]; then echo "lazygit"; else
+	go install github.com/jesseduffield/lazygit@latest
+fi
+
+# lazydocker
+if [[ $(command -v lazydocker) ]]; then echo "lazydocker"; else
+	go install github.com/jesseduffield/lazydocker@latest
+fi
+
