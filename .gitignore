@@ -6,3 +6,5 @@
 !.bash_*
 .bash_history
 !.apt_packages
+!.vim/
+!.vim/**/*

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-sudo apt update && sudo apt -y upgrade
+sudo apt -y update && sudo apt -y upgrade
+sudo apt -y autoremove && sudo apt -y clean
 
 # vi
 if [[ $(command -v vim) ]]; then echo "vim"; else 
@@ -12,8 +13,23 @@ if [[ $(command -v tmux) ]]; then echo "tmux"; else
 	sudo apt -y install tmux
 fi
 
-# Docker
+# Go
+if [[ $(command -v go) ]]; then echo "go"; else
+	function GO_UPD(){
+ 		local GO_VER=$(curl -sk "https://go.dev/VERSION?m=text" | head -1)
+		local GO_FILE="${GO_VER}.linux-arm64.tar.gz"
+		echo -e " + Installing GO: ${GO_FILE}"
+  		wget "https://go.dev/dl/${GO_FILE}"
+  		sudo tar xf "${GO_FILE}" -C /usr/local
+  		[ -f "$HOME/.bashrc" ]&& echo -e "Info: .bashrc exists!\n" || echo -e "Error: .bashrc doesn't exist! Creating... $(> $HOME/.bashrc)\n"
+  		echo -e '\nexport GOROOT=/usr/local/go\nexport GOPATH=$HOME/go\nexport PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> $HOME/.bashrc
+  		source "$HOME"/.bashrc
+		rm ${GO_FILE}
+	}	
+	GO_UPD
+fi
 
+# Docker
 if [[ $(command -v docker) ]]; then echo "docker"; else 
 	sudo apt -y install docker.io
 	sudo groupadd docker
@@ -22,12 +38,12 @@ fi
 
 # NVM
 if [[ $(command -v node) ]]; then echo "nvm"; else
-   curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo bash
-   nvm install latest
+	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sudo bash
+   	nvm install latest
 fi
 
+# Deno
 if [[ $(command -v deno) ]]; then echo "deno"; else
-    curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
+    	curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
 fi
 
-sudo apt -y autoremove && sudo apt -y clean
