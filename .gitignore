@@ -8,3 +8,6 @@
 !.apt_packages
 !.vim/
 !.vim/**/*
+!.ssh/
+.ssh/*
+!.ssh/config
